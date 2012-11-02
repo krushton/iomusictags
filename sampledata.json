@@ -1,0 +1,17 @@
+{"nodes":
+    [
+        {"name":"Rock","freq":100},
+        {"name":"Heavy Metal","freq":50},
+        {"name":"Disco","freq":40},
+        {"name":"French House","freq":10}
+    ],
+ "links":
+    [
+        {"source":1,"target":0,"value":70},
+        {"source":2,"target":0,"value":30},
+        {"source":3,"target":0,"value":20},
+        {"source":2,"target":1,"value":20},
+        {"source":3,"target":1,"value":10},
+        {"source":3,"target":2,"value":80}
+    ]
+}
