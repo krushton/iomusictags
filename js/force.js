@@ -93,6 +93,7 @@ function laterFunction(){
 
     node.append("svg:text") 
       .style("pointer-events", "none") 
+      .attr("text-anchor", "middle")
       .attr("fill", "#000") 
       .attr("font-size", "15px")
       .attr("font-family", "sans-serif")
