@@ -29,9 +29,9 @@ float:left;
 background-color:#EEE;
 height:100%;
 padding:0;
-width:282px; /* total - border */
+width:300px; /* total - border */
 float:right;
-margin-right:-283px;
+margin-right:-301px;
 border-left:solid #AAA 1px;
 overflow:auto;
 }
@@ -62,4 +62,11 @@ display:block;
 text-align:center;
 padding:3px 0px 7px 0px;
 width:126px;
+}
+
+iframe {
+border: 0px;
+height: 47px;
+width: 260px;
+overflow: hidden;
 }
