@@ -7,3 +7,59 @@ line.link {
   stroke: #999;
   stroke-opacity: .6;
 }
+
+html, body, .content{
+height: 100%;
+margin:0;
+padding:0;
+}
+
+.content{
+display:block;
+padding-right:283px;
+}
+
+.stretch {
+width:100%;
+height:100%;
+float:left;
+}
+
+.fixed {
+background-color:#EEE;
+height:100%;
+padding:0;
+width:282px; /* total - border */
+float:right;
+margin-right:-283px;
+border-left:solid #AAA 1px;
+overflow:auto;
+}
+
+#fixedContent{
+padding:10px;
+}
+
+#tagTitle{
+margin:0px 0px 10px 0px;
+}
+
+#tagSummary{
+padding-bottom:10px;
+}
+
+.artist {
+display:inline-block;
+vertical-align:top;
+}
+
+#artist0, #artist2{
+padding-right:10px;
+}
+
+.artistName{
+display:block;
+text-align:center;
+padding:3px 0px 7px 0px;
+width:126px;
+}
