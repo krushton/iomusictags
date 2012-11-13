@@ -16,7 +16,7 @@ def home():
 @route('/<id>', method='GET')
 def hello(id):
 	id = id
-	id = "http://mp3skull.com/mp3/" + id.replace(" ","_") + ".html"
+	id = "http://mp3skull.com/mp3/" + id + ".html"
 	#http://asian-central.com:8080/gorillaz%20feeling%20good
 	#http://asian-central.com:8080/
 	
@@ -26,7 +26,7 @@ def hello(id):
 	source = html.parse(id)
 	songs = source.xpath("//a[starts-with(text(),'Download')]/@href")
 	#names = source.xpath("//a[starts-with(text(),'Download')]/text()")
-	song_names = source.xpath("//div[@id='right_song']/div/b/text()")
+	#song_names = source.xpath("//div[@id='right_song']/div/b/text()")
 	#song_info = source.xpath("//div[@class='left']/text()")
 	
 	#return '<audio><a href="' + i + '">' + i + '</a></audio>'
@@ -41,11 +41,29 @@ def hello(id):
 	# if tested == False:
 		# song = songs[2]
 	
-	return """<audio autoplay='autoplay' controls='controls'>
+			#<title> """ + song_names[1].replace("mp3","").title() + """ </title>
+	
+	return """
+			<html>
+			<head>
+			<title></title>
+			
+			<meta name="viewport" content="width=320">
+			<link rel="shortcut icon" href="favicon3.png">
+			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+			<style type="text/css">
+				body { width: 320px; font-family: "Myriad Pro", "Helvetica", "Arial"; background: black; color: white; font-size: 10px; }
+			</style>
+			
+			</head>
+			
+			<body>
+			<audio autoplay='autoplay' controls='controls'>
 			<source src='""" + song + """' type="audio/mpeg">
 			Your browser does not support the audio element.
 			</audio>
-			""" + "<div>" + song_names[1].replace("mp3","").title() + "<br></div>"
+			""" + "<div>" + "<br></div></body></html>"
+			# + song_names[1].replace("mp3","").title().encode("utf-8")
 			# + str(exists(songs[1]))+ str(exists(songs[2]))+ str(exists(songs[3]))
 			# <br><audio controls='controls'>
 			  # <source src='""" + songs[2] + """' type="audio/mpeg">
