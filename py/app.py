@@ -1,4 +1,4 @@
-from bottle import route, run
+from bottle import route, run, error
 import random
 
 # Import URL Parse/Scraper
@@ -32,12 +32,16 @@ def checker(url):
 		return str(size)
 	except urllib2.HTTPError, error:
 		size = error.read()
-		return str(size)
+		return "File Not Available on TagRadio."
 
 @route('/')
 def home():
-	return "<div></div>"
+	return "<div style='color: white; font-size: 12px; font-family: Myriad Pro, Helvetica, Arial;'>Please Choose a Tag, Artist or Song to Start TagRadio</div>"
 
+@error(500)
+def custom500(error):
+    return "<div style='color: white; font-size: 12px; font-family: Myriad Pro, Helvetica, Arial;'>File Not Available on TagRadio.</div>"
+	
 @route('/<id>', method='GET')
 def hello(id):
 	id = id
@@ -96,7 +100,7 @@ def hello(id):
 			<link rel="shortcut icon" href="favicon3.png">
 			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
 			<style type="text/css">
-				body { width: 320px; font-family: "Myriad Pro", "Helvetica", "Arial"; background: transparent; color: white; font-size: 10px; }
+				body { width: 320px; font-family: "Myriad Pro", "Helvetica", "Arial"; background: transparent; black: white; font-size: 10px; }
 			</style>
 			
 			</head>
