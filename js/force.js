@@ -86,7 +86,8 @@ d3.json("fewer.json", function(json) {
     // Reset the append divs and initialize variables
     $("#welcome").hide();
     $("#tagInfo").show();
-    $("#topArtists").html("");
+    $("#topTracks").html("<h2>Top Tracks</h2><ul id='tracklist'></ul>")
+    $("#topArtists").html("<h2>Top Artists</h2>");
     tag = d.name;
 
 
@@ -108,6 +109,11 @@ d3.json("fewer.json", function(json) {
       console.log(tracksJSON.toptracks.track[0].artist.name);
       // This is how you get the track name:
       console.log(tracksJSON.toptracks.track[0].name);
+
+      for (var i=0; i<4; i++){
+
+        $("#tracklist").append("<li><a target='player' href='http://www.asian-central.com:8080/" + tracksJSON.toptracks.track[i].name + " " + tracksJSON.toptracks.track[i].artist.name + "'><span class='music'>" + tracksJSON.toptracks.track[i].artist.name + " - " + tracksJSON.toptracks.track[i].name + "</span></a></li>");
+      }
 
     });
 
