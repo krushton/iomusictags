@@ -102,6 +102,8 @@ padding:10px;
 #tracklist li{
 	list-style:none;
 	padding-bottom:4px;
+	width: 274px;
+	overflow: hidden;
 }
 
 .artist {
