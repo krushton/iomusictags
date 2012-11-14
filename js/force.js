@@ -6,7 +6,6 @@ var force = d3.layout.force()
     .linkDistance(function(link) {
           return 5 * (100 - link.value); //link.value measures the strength of the correllation, with higher values being a higher "similarity score"
        })
-    .friction(.1)
     .gravity(.9)
     .size([width, height]);
 
@@ -35,8 +34,8 @@ d3.json("fewer.json", function(json) {
     node.append("svg:circle") 
       .attr("r", function(d) { 
            return Math.floor(d.freq/3); }) 
-      .style("fill", function() { return getRandomColor()});
-     // .call(force.drag); 
+      .style("fill", function() { return getRandomColor()})
+     .call(force.drag); 
 
     node.append("svg:text") 
       .style("pointer-events", "none") 
@@ -87,7 +86,7 @@ d3.json("fewer.json", function(json) {
   }
 
   function handleClick(d){
-
+    
 
     // Reset the append divs and initialize variables
     $("#welcome").hide();
