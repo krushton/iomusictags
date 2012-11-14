@@ -1,7 +1,9 @@
 from bottle import route, run
+import random
 
 # Import URL Parse/Scraper
 import urllib
+import urllib2
 from lxml import etree
 from lxml import html
 
@@ -9,16 +11,38 @@ from lxml import html
 # def index(url):
   # return "Your url is " + url
 
+# def checker(url):
+	# url = url
+	# usock = urllib2.urlopen(url)
+	# size = usock.info().get('Content-Length')
+	# if size is None:
+		# size = 0
+	# size = float(size)
+	# size = size / 1024.0
+	# size = size / 1024.0
+	# return str(size)
+	
+def checker(url):
+	try:
+		f = urllib2.urlopen(url)
+		if "Content-Length" in f.headers:
+			size = int(f.headers["Content-Length"])
+		else:
+			size = len(f.read());
+		return str(size)
+	except urllib2.HTTPError, error:
+		size = error.read()
+		return str(size)
+
 @route('/')
 def home():
-	return "Welcome to Peter's Development Server!"
+	return "<div></div>"
 
 @route('/<id>', method='GET')
 def hello(id):
 	id = id
 	id = "http://mp3skull.com/mp3/" + id + ".html"
 	#http://asian-central.com:8080/gorillaz%20feeling%20good
-	#http://asian-central.com:8080/
 	
 	#from lxml import html
 	#source = html.parse("http://mp3skull.com/mp3/feel%20good.html")
@@ -35,8 +59,28 @@ def hello(id):
 		# print i
 		# return i
 	
-	song = songs[1]
+	song = songs[random.randrange(0, 10)]
+	
+	# song = "http://promodj.com/source/3635769/Gorillaz_Feel_Good_Inc_1_1_EasyTech_Club.mp3"
+	
+	blacklist = ['audiopoisk.com','promodj.com']
+	
+	if 'promodj.com' in song:
+		song = songs[random.randrange(10, 20)]
+
+	if 'audiopoisk.com' in song:
+		song = songs[random.randrange(10, 20)]
+
+	if '4shared.com' in song:
+		song = songs[random.randrange(10, 20)]
+
+	if checker(song) < 3145728:
+		song = songs[random.randrange(0, 20)]	
+		
 	# tested = str(exists(song))
+	
+	# if checker(song) == 0:
+		# song = songs[2]
 	
 	# if tested == False:
 		# song = songs[2]
@@ -52,7 +96,7 @@ def hello(id):
 			<link rel="shortcut icon" href="favicon3.png">
 			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
 			<style type="text/css">
-				body { width: 320px; font-family: "Myriad Pro", "Helvetica", "Arial"; background: black; color: white; font-size: 10px; }
+				body { width: 320px; font-family: "Myriad Pro", "Helvetica", "Arial"; background: transparent; color: white; font-size: 10px; }
 			</style>
 			
 			</head>
