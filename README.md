@@ -10,7 +10,7 @@ Clicking a tag shows the user more information, and lets them listen to some sam
 * [Taeil Kwak]() - layout, d3 coding, info panel
 
 ## Demo Version
- [http://krushton/iomusictags](http://krushton/iomusictags)
+ [http://krushton.com/iomusictags](http://krushton.com/iomusictags)
 
 ## Technologies Used
 * Code: HTML, CSS, Python, JavaScript, jQuery, JSON, D3.js
