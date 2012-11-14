@@ -1,20 +1,20 @@
 var width = 1000,
-    height = 1000;
+    height = 700;
 
 var force = d3.layout.force()
-    .charge(-20)
+    .charge(-130)
     .linkDistance(function(link) {
-          return 8 * (100 - link.value); //link.value measures the strength of the correllation, with higher values being a higher "similarity score"
+          return 5 * (100 - link.value); //link.value measures the strength of the correllation, with higher values being a higher "similarity score"
        })
     .friction(.1)
-    .gravity(.5)
+    .gravity(.9)
     .size([width, height]);
 
 var svg = d3.select("#chart").append("svg")
     .attr("viewBox", "0 0 " + width + " " + height )
     .attr("preserveAspectRatio", "xMidYMid meet");
 
-d3.json("results.json", function(json) {
+d3.json("fewer.json", function(json) {
   force
       .nodes(json.nodes)
       .links(json.links)

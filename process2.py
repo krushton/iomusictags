@@ -53,10 +53,10 @@ d = json.load(f)
 
 index = 1
 for tag in d['toptags']['tag']:
-	if index <= 100:
+	if index <= 50:
 		nodes.append({"name" : tag['name'], "freq": int( int(tag["count"])/10000)})
 		index = index + 1
-w = open('results.json', 'w')
+w = open('fewer.json', 'w')
 
 calculate_similarity(0)
 
