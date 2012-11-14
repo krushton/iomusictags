@@ -22,3 +22,4 @@ Chrome, Safari, Firefox
 ### Bugs, Quirks, Easter Eggs
 * Does not work in IE
 * If the player cannot find a track it displays a 500 error
+* Sometimes the nodes slide out of view

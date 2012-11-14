@@ -124,7 +124,7 @@ d3.json("fewer.json", function(json) {
 
         console.log(artistsJSON.topartists.artist[i].image[2]['#text']);
 
-        $("#topArtists").append("<div class='artist' id='artist" + i +"'><a target='player' href='http://www.asian-central.com:8080/"+artistsJSON.topartists.artist[i].name+"'><img src='" + artistsJSON.topartists.artist[i].image[2]['#text'] + "'><span class='artistName'>" + artistsJSON.topartists.artist[i].name + "</span></a></div>");
+        $("#topArtists").append("<div class='artist' id='artist" + i +"'><a target='player' href='http://www.asian-central.com:8080/"+artistsJSON.topartists.artist[i].name+"'><img src='" + artistsJSON.topartists.artist[i].image[2]['#text'] + "'><span class='artistName music'>" + artistsJSON.topartists.artist[i].name + "</span></a></div>");
       }
 
     });

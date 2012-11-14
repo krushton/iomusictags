@@ -48,6 +48,12 @@ border-left:solid #AAA 1px;
 overflow:auto;
 }
 
+.music:after {
+	content: url(note.png);
+	margin-left:4px;
+}
+
+
 #fixedContent{
 padding:10px;
 }
@@ -78,9 +84,9 @@ width:126px;
 
 
 iframe {
-border: 0px;
-height: 47px;
-overflow: hidden;
+	border: 0px;
+	height: 47px;
+	overflow: hidden;
 }
 
 #navbar {
