@@ -19,7 +19,7 @@ line.link {
 }
 
 html, body, .content{
-height: 100%;
+height:100%;
 margin:0;
 padding:0;
 font-family: arial,"Helvetica Neue",helvetica,sans-serif;
@@ -33,13 +33,32 @@ padding-right:301px;
 
 .stretch {
 width:100%;
-height:100%;
+display:block;
 float:left;
+}
+
+
+#navbar {
+	background-color:#000;
+	height:110px;
+	width:100%;
+	overflow:hidden;
+	display:block;
+}
+
+#chartwrapper{
+}
+
+#gallery{
+}
+
+#logo {
+	height:100px;
 }
 
 .fixed {
 background-color:#EEE;
-height:130%;
+height:100%;
 padding:0;
 width:300px; /* total - border */
 float:right;
@@ -89,20 +108,8 @@ iframe {
 	overflow: hidden;
 }
 
-#navbar {
-	background-color:#000;
-	width:100%;
-	height:110px;
-	overflow:hidden;
-	float:right;
-}
-
-
-#logo {
-	height:100px;
-}
-
 #player {
-	display:inline-block;
-	margin-left:40%;
+position: absolute;
+right: 157px;
+top: 31px;
 }

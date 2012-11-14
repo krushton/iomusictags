@@ -80,11 +80,6 @@ d3.json("fewer.json", function(json) {
     return color;
     }
 
-  function bodyLoad(){
-    $("#welcome").show();
-    $("#tagInfo").hide();
-  }
-
   function handleClick(d){
     
 
@@ -130,3 +125,11 @@ d3.json("fewer.json", function(json) {
     });
 
   }
+
+// Hack to get the chart to fit in that window
+function setSizes() {
+   var contentHeight = $(".content").height();
+   $("#chartwrapper").height(contentHeight - 110);
+}
+
+$(window).resize(function() { setSizes(); });
