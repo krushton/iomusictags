@@ -112,7 +112,7 @@ d3.json("fewer.json", function(json) {
 
       for (var i=0; i<4; i++){
 
-        $("#tracklist").append("<li><a target='player' href='http://www.asian-central.com:8080/" + tracksJSON.toptracks.track[i].name + " " + tracksJSON.toptracks.track[i].artist.name + "'><span class='music'>" + tracksJSON.toptracks.track[i].artist.name + " - " + tracksJSON.toptracks.track[i].name + "</span></a></li>");
+        $("#tracklist").append("<li><a target='player' href='http://www.asian-central.com:8081/" + tracksJSON.toptracks.track[i].name + " " + tracksJSON.toptracks.track[i].artist.name + "'><span class='music'>" + tracksJSON.toptracks.track[i].artist.name + " - " + tracksJSON.toptracks.track[i].name + "</span></a></li>");
       }
 
     });
@@ -125,7 +125,7 @@ d3.json("fewer.json", function(json) {
 
         console.log(artistsJSON.topartists.artist[i].image[2]['#text']);
 
-        $("#topArtists").append("<div class='artist' id='artist" + i +"'><a target='player' href='http://www.asian-central.com:8080/"+artistsJSON.topartists.artist[i].name+"'><img src='" + artistsJSON.topartists.artist[i].image[2]['#text'] + "'><span class='artistName music'>" + artistsJSON.topartists.artist[i].name + "</span></a></div>");
+        $("#topArtists").append("<div class='artist' id='artist" + i +"'><a target='player' href='http://www.asian-central.com:8081/"+artistsJSON.topartists.artist[i].name+"'><img src='" + artistsJSON.topartists.artist[i].image[2]['#text'] + "'><span class='artistName music'>" + artistsJSON.topartists.artist[i].name + "</span></a></div>");
       }
 
     });
