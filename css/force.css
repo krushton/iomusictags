@@ -55,12 +55,6 @@ float:left;
 	display:block;
 }
 
-#chartwrapper{
-}
-
-#gallery{
-}
-
 #logo {
 	height:100px;
 }
@@ -128,8 +122,13 @@ iframe {
 	overflow: hidden;
 }
 
-#player {
-position: absolute;
-right: 157px;
-top: 31px;
+#ytapiplayer {
+	display:none;
+}
+
+#myytplayer {
+	position: absolute;
+	right: 320px;
+	top: 31px;
+	height:40px;
 }

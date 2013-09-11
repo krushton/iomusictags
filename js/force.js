@@ -1,3 +1,4 @@
+
 var width = 1000,
     height = 700;
 
@@ -94,8 +95,6 @@ d3.json("fewer.json", function(json) {
     // Get title and summary
     $.getJSON("http://ws.audioscrobbler.com/2.0/?method=tag.getinfo&tag=" + tag + "&api_key=1d4e90a59a76ae5489f0a080f0da6979&format=json", function(infoJSON){
 
-      console.log(infoJSON);
-
       $("#tagTitle").html(infoJSON.tag.name);
       $("#tagSummary").html(infoJSON.tag.wiki.summary);
 
@@ -104,15 +103,26 @@ d3.json("fewer.json", function(json) {
     // Get top tracks
     $.getJSON("http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=" + tag + "&api_key=1d4e90a59a76ae5489f0a080f0da6979&format=json", function(tracksJSON){
 
-      console.log(tracksJSON);
-      // This is how you get the artist name:
-      console.log(tracksJSON.toptracks.track[0].artist.name);
-      // This is how you get the track name:
-      console.log(tracksJSON.toptracks.track[0].name);
 
       for (var i=0; i<4; i++){
+        var trackName = tracksJSON.toptracks.track[i].artist.name;
+        var trackArtist = tracksJSON.toptracks.track[i].name;
 
-        $("#tracklist").append("<li><a target='player' href='http://www.asian-central.com:8081/" + tracksJSON.toptracks.track[i].name + " " + tracksJSON.toptracks.track[i].artist.name + "'><span class='music'>" + tracksJSON.toptracks.track[i].artist.name + " - " + tracksJSON.toptracks.track[i].name + "</span></a></li>");
+        var link = $("<a href='#'><span class='music'>" + trackArtist + " - " + trackName + "</span></a>");
+
+        link.data('name', trackName);
+        link.data('artist',trackArtist);
+
+
+        $(link).click(function() {
+          var track = $(this).data('name');
+          var artist = $(this).data('artist');
+          
+          loadPlayer(artist, track);
+        });
+
+        var listItem = $('<li></li>').append(link);
+        $("#tracklist").append(listItem);
       }
 
     });
@@ -120,12 +130,19 @@ d3.json("fewer.json", function(json) {
     // Get top artists
     $.getJSON("http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag="+ tag + "&api_key=1d4e90a59a76ae5489f0a080f0da6979&format=json", function(artistsJSON){
 
-      console.log(artistsJSON);
       for (var i=0; i<4; i++){
 
-        console.log(artistsJSON.topartists.artist[i].image[2]['#text']);
+        var artistName = artistsJSON.topartists.artist[i].name;
+        var link = $("<a href='#'><img src='" + artistsJSON.topartists.artist[i].image[2]['#text'] + "'><span class='artistName music'>" + artistsJSON.topartists.artist[i].name + "</span></a>")
+        link.data('artist', artistName);
+        link.click(function() {
+          var artist = $(this).data('artist');
+          loadPlayer(artist, "music");
+        });
 
-        $("#topArtists").append("<div class='artist' id='artist" + i +"'><a target='player' href='http://www.asian-central.com:8081/"+artistsJSON.topartists.artist[i].name+"'><img src='" + artistsJSON.topartists.artist[i].image[2]['#text'] + "'><span class='artistName music'>" + artistsJSON.topartists.artist[i].name + "</span></a></div>");
+        var div = $("<div class='artist' id='artist" + i +"'></div>").append(link);
+
+        $("#topArtists").append(div);
       }
 
     });
@@ -139,3 +156,47 @@ function setSizes() {
 }
 
 $(window).resize(function() { setSizes(); });
+
+function loadPlayer(artist, track) {
+     
+    var options = {
+      orderby: "relevance",
+      q: artist + " " + track, 
+      "start-index": 1,
+      "max-results": 1,
+      v: 2,
+      alt: "json"
+    };
+
+
+    $.ajax({
+      url: 'http://gdata.youtube.com/feeds/api/videos',
+      method: 'get',
+      data: options,
+      dataType: 'json',
+      success: function(data) {
+
+        var player = document.getElementById('myytplayer');
+        var id = data.feed.entry[0].id["$t"];
+        var mId = id.split(':')[3];
+
+        if (!player) {
+            var params = { allowScriptAccess: "always" };
+            var atts = { id: "myytplayer" };
+            swfobject.embedSWF("http://www.youtube.com/v/" + mId + "?enablejsapi=1&playerapiid=ytplayer&version=3&autoplay=1&autohide=0",
+                           "ytapiplayer", "300", "356", "8", null, null, params, atts);
+        } else {
+          player.loadVideoById(mId, 0, "large");
+        }
+
+
+     
+        $('#ytapiplayer').show();
+
+
+      }, 
+      error : function() {
+        console.log("error");
+      }
+      });
+}
